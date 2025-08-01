@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="main-content-wrapper" style="display: none;">
     <header>
         <img src="TECH ON TAP SEBASTION LOGO WITHOUT TEXT.jpg" alt="Tech On Tap Logo" style="max-width: 120px; height: auto; display: block; margin: 0 auto 10px auto;">
         <h1>Welcome to Tech On Tap</h1>
@@ -73,5 +74,54 @@
         <p>&copy; 2025 Phone Showcase. All rights reserved.</p>
     </footer>
     <script src="script.js"></script>
+    </div>
+
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Password</h2>
+            <p>Please enter the credentials to view this site.</p>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button id="submit-password">Submit</button>
+            <p id="error-message" style="color:red; display:none;">Invalid username or password.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const correctUsername = '37736139';
+            const correctPassword = 'password';
+
+            const modal = document.getElementById('password-modal');
+            const mainContent = document.getElementById('main-content-wrapper');
+            const submitButton = document.getElementById('submit-password');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('error-message');
+
+            function checkPassword() {
+                if (usernameInput.value === correctUsername && passwordInput.value === correctPassword) {
+                    modal.style.display = 'none';
+                    mainContent.style.display = 'block';
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+            }
+
+            submitButton.addEventListener('click', checkPassword);
+
+            passwordInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+
+            usernameInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
